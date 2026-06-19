@@ -12,8 +12,6 @@
     "@gluestack-style/react": "^1.0.57",
     "@gluestack-ui/config": "^1.1.20",
     "@gluestack-ui/themed": "^1.1.73",
-    "@react-native-aria/focus": "^0.2.9",
-    "@react-native-aria/interactions": "^0.2.16",
     "@react-native-aria/overlays": "^0.3.15",
     "expo": "~55.0.8",
     "expo-status-bar": "~55.0.4",
