@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ChatModule } from './chat/chat.module';
+import { VoiceModule } from './voice/voice.module';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { ChatModule } from './chat/chat.module';
       isGlobal: true,
     }),
     ChatModule,
+    VoiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

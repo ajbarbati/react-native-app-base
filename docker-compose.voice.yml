@@ -1,0 +1,31 @@
+# Local stack: Nest API + Moonshine voice sidecar.
+# Usage: docker compose -f docker-compose.voice.yml up --build
+#
+# The API reads MOONSHINE_SERVICE_URL (defaults in server/.env.example).
+
+services:
+  voice-service:
+    build:
+      context: ./voice-service
+      dockerfile: Dockerfile
+    ports:
+      - '8765:8765'
+    environment:
+      MOONSHINE_STT_LANGUAGE: en
+      MOONSHINE_STT_MODEL_ARCH: tiny
+      MOONSHINE_TTS_LANGUAGE: en-us
+      LOG_LEVEL: INFO
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      PORT: '3000'
+      MOONSHINE_SERVICE_URL: http://voice-service:8765
+      CHAT_API_BASE_URL: ${CHAT_API_BASE_URL:-http://host.docker.internal:11434}
+      CHAT_MODEL: ${CHAT_MODEL:-glm-4.7-flash}
+    depends_on:
+      - voice-service
